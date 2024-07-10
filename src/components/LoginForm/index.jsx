@@ -38,9 +38,9 @@ export const LoginForm = () => {
    
 
     return(
-    <div className="flex justify-center items-center min-h-screen bg-transparent">
+    <div className="fixed right-60 flex justify-end items-center min-h-screen bg-transparent">
       <form onSubmit={handleSubmit} className="bg-[#454e56d3]  p-6 rounded-sm shadow-md w-full max-w-sm">
-        <h2 className="text-2xl font-bold mb-6 text-gray-900">F&M Projects</h2>
+        <img src="/MagicEraser_240607_160640-Photoroom.png" alt="logo" className="w-full"/>
         <div className="mb-4">
           <input
             type="text"
@@ -66,7 +66,7 @@ export const LoginForm = () => {
         <div className="flex items-center justify-center">
           <button
             type="submit"
-            className="bg-[#9c9c9c] hover:bg-[#777676] text-white font-sm italic py-2 px-4 rounded-3xl focus:outline-none focus:shadow-outline"
+            className="bg-[#9c9c9c] hover:bg-[#777676] text-white font-sm italic py-2 px-8 rounded-3xl focus:outline-none focus:shadow-outline"
           >
             Iniciar sesion
           </button>
