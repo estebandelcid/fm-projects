@@ -1,40 +1,8 @@
 "use client";
 
-import useLocalStorage from "@/hooks/useLocalStorage";
-import { authKey } from "@/lib/constants";
-import { useEffect, useState } from "react";
-const API_DATA = "http://corte.fymmx.com/plantillas/getData";
+import useProducts from "@/hooks/useProducts";
 export const ProductTable = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [storedValue, setValue] = useLocalStorage(authKey);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const token = storedValue;
-      try {
-        const response = await fetch(API_DATA, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setProducts(data);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+  const { products, loading, error } = useProducts();
   if (loading) {
     return <div className="p-4">Loading...</div>;
   }
