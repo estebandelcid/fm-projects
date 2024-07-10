@@ -36,13 +36,13 @@ export const RegisterForm = () => {
     }
   };
   return (
-    <div className="flex justify-center items-center min-h-screen bg-transparent">
+    <div className="fixed right-60 w-full flex justify-end items-center min-h-screen bg-transparent">
       <form
         onSubmit={handleSubmit}
         className="bg-[#454e56d3] p-6 rounded-sm shadow-md w-full max-w-sm"
       >
-        <h2 className="text-center text-2xl font-bold mb-6 text-white">
-          Crear cuenta
+        <h2 className="text-center text-3xl font-bold m-10 text-white">
+          CREAR CUENTA
         </h2>
         <div className="mb-4">
           <input
@@ -88,10 +88,10 @@ export const RegisterForm = () => {
             required
           />
         </div>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center m-10">
           <button
             type="submit"
-            className="bg-[#9c9c9c] hover:hover:bg-[#777676] text-white font-sm italic py-2 px-4 rounded-3xl focus:outline-none focus:shadow-outline"
+            className="bg-[#9c9c9c] hover:hover:bg-[#777676] text-white font-sm italic py-2 px-8 rounded-3xl focus:outline-none focus:shadow-outline"
           >
             Registrarse
           </button>
