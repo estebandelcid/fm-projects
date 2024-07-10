@@ -39,7 +39,7 @@ export const LoginForm = () => {
 
     return(
     <div className="flex justify-center items-center min-h-screen bg-transparent">
-      <form onSubmit={handleSubmit} className="bg-[#454e56]  p-6 rounded shadow-md w-full max-w-sm">
+      <form onSubmit={handleSubmit} className="bg-[#454e56d3]  p-6 rounded-sm shadow-md w-full max-w-sm">
         <h2 className="text-2xl font-bold mb-6 text-gray-900">F&M Projects</h2>
         <div className="mb-4">
           <input
