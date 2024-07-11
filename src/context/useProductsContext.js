@@ -42,6 +42,35 @@ export const ProductsProvider = ({ children }) => {
 
     fetchData();
   }, [storedValue]);
+
+  const updateProductsStatus = async (IDpedido, newStatus) => {
+    const token = storedValue;
+
+    try {
+      const response = await fetch(
+        `http://corte.fymmx.com/plantillas/changeStatus?IDpedido=${IDpedido}&status=${newStatus}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      setProducts((prevProducts) => prevProducts.map((product) => 
+      product.IDpedido === IDpedido ? {... product, status: newStatus } : product
+      )
+    );
+    } catch (error) {
+      console.error("Error changing status: ", error);
+    }
+  };
+
   return (
     <ProductsContext.Provider
       value={{
@@ -49,6 +78,7 @@ export const ProductsProvider = ({ children }) => {
         loading,
         error,
         setProducts,
+        updateProductsStatus,
       }}
     >
       {children}

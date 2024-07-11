@@ -4,36 +4,12 @@ import useLocalStorage from "@/hooks/useLocalStorage";
 import { useProducts } from "@/hooks/useProducts";
 import { authKey } from "@/lib/constants";
 import { useState } from "react";
-export const ProductTable = () => {
-  const { products, loading, error, setProducts } = useProducts();
+export const ProductTable = ({ products}) => {
+  const { loading, error, updateProductsStatus } = useProducts();
   const [storedValue] = useLocalStorage(authKey);
   const [statusOptions] = useState(["En proceso", "Completado", "Rechazado"]);
   const handleStatusChange = async (IDpedido, newStatus) => {
-    const token = storedValue;
-
-    try {
-      const response = await fetch(
-        `http://corte.fymmx.com/plantillas/changeStatus?IDpedido=${IDpedido}&status=${newStatus}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      setProducts((prevProducts) => prevProducts.map((product) => 
-      product.IDpedido === IDpedido ? {... product, status: newStatus } : product
-      )
-    );
-    } catch (error) {
-      console.error("Error changing status: ", error);
-    }
+    await updateProductsStatus(IDpedido, newStatus);
   };
   if (loading) {
     return <div className="p-4">Loading...</div>;
