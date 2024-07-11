@@ -1,8 +1,40 @@
 "use client";
 
-import useProducts from "@/hooks/useProducts";
+import useLocalStorage from "@/hooks/useLocalStorage";
+import { useProducts } from "@/hooks/useProducts";
+import { authKey } from "@/lib/constants";
+import { useState } from "react";
 export const ProductTable = () => {
-  const { products, loading, error } = useProducts();
+  const { products, loading, error, setProducts } = useProducts();
+  const [storedValue] = useLocalStorage(authKey);
+  const [statusOptions] = useState(["En proceso", "Completado", "Rechazado"]);
+  const handleStatusChange = async (IDpedido, newStatus) => {
+    const token = storedValue;
+
+    try {
+      const response = await fetch(
+        `http://corte.fymmx.com/plantillas/changeStatus?IDpedido=${IDpedido}&status=${newStatus}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      setProducts((prevProducts) => prevProducts.map((product) => 
+      product.IDpedido === IDpedido ? {... product, status: newStatus } : product
+      )
+    );
+    } catch (error) {
+      console.error("Error changing status: ", error);
+    }
+  };
   if (loading) {
     return <div className="p-4">Loading...</div>;
   }
@@ -51,7 +83,19 @@ export const ProductTable = () => {
                   product.status
                 )}`}
               >
-                <td className="py-2 px-4 ">{product.status}</td>
+               <td className="py-2 px-4">
+                <select
+                  value={product.status}
+                  onChange={(e) => handleStatusChange(product.IDpedido, e.target.value)}
+                  className="bg-transparent border border-black rounded-full px-1 py-1"
+                >
+                  {statusOptions.map((status) => (
+                    <option key={status} value={status}>
+                      {status}
+                    </option>
+                  ))}
+                </select>
+              </td>
                 <td className="py-2 px-4 w-32">{product.FechaEntrega}</td>
                 <td className="py-2 px-4">{product.PlantaDestino}</td>
                 <td className="py-2 px-4">{product.NumeroPiezas}</td>
