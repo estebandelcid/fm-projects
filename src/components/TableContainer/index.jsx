@@ -1,5 +1,5 @@
 "use client"
-import useProducts from "@/hooks/useProducts";
+import { useProducts } from "@/hooks/useProducts";
 import { ProductTable } from "../ProductTable";
 import {
   ClockIcon,
