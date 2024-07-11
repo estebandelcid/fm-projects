@@ -5,8 +5,12 @@ import { useState } from 'react';
 const useLocalStorage = (key, initialValue) => {
   // Estado local para almacenar el valor actual en localStorage
   const [storedValue, setStoredValue] = useState(() => {
+    if(typeof window === 'undefined'){
+        return initialValue;
+      }
     try {
       // Intenta obtener el valor almacenado en localStorage por la clave especificada
+      
       const item = window.localStorage.getItem(key);
       return item ? JSON.parse(item) : initialValue;
     } catch (error) {
@@ -27,7 +31,9 @@ const useLocalStorage = (key, initialValue) => {
       setStoredValue(valueToStore);
 
       // Guardar el valor en localStorage
+      if(typeof window !== 'undefined'){
       window.localStorage.setItem(key, JSON.stringify(valueToStore));
+      }
     } catch (error) {
       // Manejar errores al guardar en localStorage
       console.error(`Error al guardar valor en localStorage (${key}):`, error);
