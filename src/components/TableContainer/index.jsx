@@ -7,7 +7,6 @@ import {
   DocumentTextIcon,
   XCircleIcon,
 } from "@heroicons/react/24/outline";
-import { useEffect, useState } from "react";
 import { Navbar } from "../Navbar";
 
 export const TableContainer = () => {
