@@ -7,14 +7,50 @@ import {
   DocumentTextIcon,
   XCircleIcon,
 } from "@heroicons/react/24/outline";
+import { useEffect, useState } from "react";
+import { Navbar } from "../Navbar";
 
 export const TableContainer = () => {
   const { products } = useProducts();
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  useEffect(() => {
+    setFilteredProducts(products)
+  },[products]);
+  const handleSearch = (searchTerm) => {
+    const lowercasedSearchTerm = searchTerm.toLowerCase();
+    if (searchTerm === ""){
+      setFilteredProducts(products)
+    } else {
+        setFilteredProducts(
+          products.filter((product) => 
+          product.IDpedido.toString().toLowerCase().includes(lowercasedSearchTerm) ||
+          product.status.toLowerCase().includes(lowercasedSearchTerm) ||
+          product.FechaEntrega.toLowerCase().includes(lowercasedSearchTerm) ||
+          product.PlantaDestino.toLowerCase().includes(lowercasedSearchTerm) ||
+          product.NumeroPiezas.toLowerCase().includes(lowercasedSearchTerm) ||
+          product.TieneOrden.toString().toLowerCase().includes(lowercasedSearchTerm) ||
+          product.OrdenCompra.toLowerCase().includes(lowercasedSearchTerm) ||
+          product.Material.toLowerCase().includes(lowercasedSearchTerm) ||
+          product.Alto.toString().toLowerCase().includes(lowercasedSearchTerm) ||
+          product.Largo.toString().toLowerCase().includes(lowercasedSearchTerm) ||
+          product.NombreArchivo.toLowerCase().includes(lowercasedSearchTerm) ||
+          product.IncluyeTope.toString().toLowerCase().includes(lowercasedSearchTerm) ||
+          product.CantidadTopes.toString().toLowerCase().includes(lowercasedSearchTerm) ||
+          product.FechaSolicitud.toLowerCase().includes(lowercasedSearchTerm)
+          )
+        );
+    }
+  }
   return (
     <div className="ml-52 w-full h-full p-4">
+
+      <div className="flex justify-between">
       <h1 className="text-white text-3xl font-bold underline underline-offset-8">
         PEDIDOS
       </h1>
+      <Navbar onSearch={handleSearch}/>
+      </div>
+      
       <section className=" w-8/12 flex justify-between py-6">
         <div className="w-40 flex justify-between items-center rounded-sm bg-[#f7f7f7] px-6 py-4">
           <DocumentTextIcon className="size-11" />
@@ -45,7 +81,7 @@ export const TableContainer = () => {
           </p>
         </div>
       </section>
-      <ProductTable />
+      <ProductTable products={filteredProducts}/>
     </div>
   );
 };
