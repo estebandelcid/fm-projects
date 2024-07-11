@@ -99,6 +99,24 @@ export const ProductsProvider = ({ children }) => {
       );
     }
   };
+  const filterProducts = (filters) => {
+    let filteredProducts = [...products];
+console.log(filters, 'lo que llega')
+    Object.keys(filters).forEach((key) => {
+        filteredProducts = filteredProducts.filter(
+            (product) => product[key] === filters[key]
+        );
+    });
+    return filteredProducts;
+  };
+
+  const updateFilteredProducts = (filteredProducts) => {
+    setFilteredProducts(filteredProducts);
+  };
+
+  const clearFilters = () => {
+    setFilteredProducts(products);
+  };
   return (
     <ProductsContext.Provider
       value={{
@@ -109,6 +127,9 @@ export const ProductsProvider = ({ children }) => {
         setProducts,
         updateProductsStatus,
         handleSearch,
+        filterProducts,
+        updateFilteredProducts,
+        clearFilters
       }}
     >
       {children}
