@@ -11,36 +11,7 @@ import { useEffect, useState } from "react";
 import { Navbar } from "../Navbar";
 
 export const TableContainer = () => {
-  const { products } = useProducts();
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  useEffect(() => {
-    setFilteredProducts(products)
-  },[products]);
-  const handleSearch = (searchTerm) => {
-    const lowercasedSearchTerm = searchTerm.toLowerCase();
-    if (searchTerm === ""){
-      setFilteredProducts(products)
-    } else {
-        setFilteredProducts(
-          products.filter((product) => 
-          product.IDpedido.toString().toLowerCase().includes(lowercasedSearchTerm) ||
-          product.status.toLowerCase().includes(lowercasedSearchTerm) ||
-          product.FechaEntrega.toLowerCase().includes(lowercasedSearchTerm) ||
-          product.PlantaDestino.toLowerCase().includes(lowercasedSearchTerm) ||
-          product.NumeroPiezas.toLowerCase().includes(lowercasedSearchTerm) ||
-          product.TieneOrden.toString().toLowerCase().includes(lowercasedSearchTerm) ||
-          product.OrdenCompra.toLowerCase().includes(lowercasedSearchTerm) ||
-          product.Material.toLowerCase().includes(lowercasedSearchTerm) ||
-          product.Alto.toString().toLowerCase().includes(lowercasedSearchTerm) ||
-          product.Largo.toString().toLowerCase().includes(lowercasedSearchTerm) ||
-          product.NombreArchivo.toLowerCase().includes(lowercasedSearchTerm) ||
-          product.IncluyeTope.toString().toLowerCase().includes(lowercasedSearchTerm) ||
-          product.CantidadTopes.toString().toLowerCase().includes(lowercasedSearchTerm) ||
-          product.FechaSolicitud.toLowerCase().includes(lowercasedSearchTerm)
-          )
-        );
-    }
-  }
+  const { products, filteredProducts, handleSearch } = useProducts();
   return (
     <div className="ml-52 w-full h-full p-4">
 
