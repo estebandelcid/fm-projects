@@ -1,26 +1,43 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# F & M Projects
+Esto es una prueba técnica por parte de esta misma empresa para el puesto de Frontend Developer
 
-First, run the development server:
+[F&M Projects](https://fm-projects-pi.vercel.app/)
 
+Esta aplicación utiliza Next.js 14 y está desplegada en Vercel. Utiliza el almacenamiento local (local storage) para acceder a los endpoints necesarios.
+
+# Requisitos Previos
+
+Asegúrate de tener instalado Node.js y npm en tu máquina local.
+- Clonar el Repositorio
+## Pasos para Ejecutar el Proyecto
+1. Clonar el Repositorio:
+ ```bash
+ git clone <URL-del-repositorio>
+ ```
+2. Navega al directorio del projecto:
+ ```bash
+ cd nombre-del-repositorio
+ ```
+3. Instalar Dependencias:
+```bash
+npm install
+```
+4. Ejecutar en Modo Desarrollo:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Esto iniciará el servidor de desarrollo de Next.js en [http://localhost:3000](http://localhost:3000) de tu navegador para ver los resultados.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
+
 
 ## Learn More
+
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
 To learn more about Next.js, take a look at the following resources:
 
