@@ -1,3 +1,4 @@
+"use client"
 import { useState } from 'react';
 
 // Hook personalizado para manejar el localStorage
